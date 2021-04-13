@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BattleStrategy.Domain_models
 {
+    //Класс, отвечающий за Person
+    //Атрибут, который показывает, что класс можно сериализовать
     [Serializable]
-
     public class Person
     {
+        //Атрибуты персонажа
         public string Name { get; set; }
         public string PersonClass { get; }
         public int Level { get; set; }
@@ -17,12 +15,15 @@ namespace BattleStrategy.Domain_models
         public int Body { get; set; }
         public int Spirit { get; set; }
         public int Experience { get; set; }
+
+        //Атрибуты, в которых сохраняется значения персонажа при его создании. Нужно для алгоритма лвлапа.
         private int StartBody { get; set; }
         private int StartMind { get; set; }
         private int StartSpirit { get; set; }
 
 
-
+        //Конструктор, который используем для создания Person. Передаем имя, класс персонажа, тело, разум и дух
+        
         public Person(string name, string personClass, int body, int mind, int spirit)
         {
             Name = name;
@@ -33,22 +34,29 @@ namespace BattleStrategy.Domain_models
             StartMind = mind;
             StartSpirit = spirit;
 
+
+            //Вызываем метод Renewal, чтобы произвести лвлап на первый уровень. Пока что основные параметры персонажа равны нулю
             Renewal();
             Experience = 0;
         }
 
+        //Метод для передачи персонажу опыта. Входной параметр - опыт. 
         public void GetExperience(int experience)
         {
             Experience += experience ;
+            //Вызываем метод, который отвечает за логику лвлапа.
             LevelUp();
         }
 
+        //Метод для повышения уровня.
         private void LevelUp()
         {
             Level = (Experience / (10 )) + 1;
+            //Вызываем метод, чтобы сделать характеристики соответственно уровню.
             Renewal();
         }
         
+        //Метод для установки характеристик соотвветственно уровню.
         private void Renewal()
         {
             if (Level == 1)

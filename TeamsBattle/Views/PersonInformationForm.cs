@@ -15,6 +15,7 @@ namespace BattleStrategy.Views
 
         #endregion
 
+
         public void Show(Person person)
         {
             this.NameBox.Text = person.Name;

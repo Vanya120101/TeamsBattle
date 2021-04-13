@@ -75,6 +75,8 @@ namespace BattleStrategy.Views
             }
         }
 
+
+
         private void CreateTeamButton_Click(object sender, EventArgs e)
         {
             Teams.AddTeam(NameBox.Text, SelectedPeople, out string errorMessage);

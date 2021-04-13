@@ -11,10 +11,12 @@ using System.Threading.Tasks;
 
 namespace BattleStrategy.Models
 {
+    //класс для сериализаци и десериализации. Статический. Значит, что не нужно создавать экземляр класса. Можно использовать через тип класса. Через обычное название. 
+    //SaveLoadService.Load();
     static class SaveLoadService
     {
        
-
+        //Метод для десериализации. 
         public static BindingList<T> Load<T>() where T : class
         {
             var formatter = new BinaryFormatter();

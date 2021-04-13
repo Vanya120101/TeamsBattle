@@ -9,15 +9,19 @@ using System.Threading.Tasks;
 
 namespace BattleStrategy.Models
 {
+    //Класс для всех команд.
     class Teams
     {
+        //Список команд
         private static BindingList<Team> TeamsList { get; set; }
         static Teams()
         {
+
+            //Получаем команды.
             TeamsList = SaveLoadService.Load<Team>();
             
         }
-
+        //ДОбавление команды
         public void AddTeam(string name, BindingList<Person> people, out string errorMessage)
         {
             errorMessage = "";
@@ -38,7 +42,7 @@ namespace BattleStrategy.Models
             }
 
           
-
+            
             Team team = new Team(name, people);
             TeamsList.Add(team);
             SaveLoadService.Save(TeamsList);

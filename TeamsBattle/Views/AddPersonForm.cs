@@ -8,6 +8,7 @@ namespace BattleStrategy.Views
     public partial class AddPersonForm : Form
     {
         readonly People People;
+
         #region Constructs
         public AddPersonForm()
         {
@@ -27,7 +28,7 @@ namespace BattleStrategy.Views
 
 
 
-
+        //Методы ддля перемещения формы. 
         private Point moveStart;
 
         private void TopMenu_MouseMove(object sender, MouseEventArgs e)
@@ -51,11 +52,13 @@ namespace BattleStrategy.Views
 
 
 
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        //Метод для рандомного создания персонажа
         private void CreateRandomPersonButton_Click(object sender, EventArgs e)
         {
             Random random = new Random();
@@ -108,6 +111,7 @@ namespace BattleStrategy.Views
 
         }
 
+        //Создание персонажа
         private void CreatePersonButton_Click(object sender, EventArgs e)
         {
             string name = this.NameBox.Text;

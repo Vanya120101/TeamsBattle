@@ -5,13 +5,18 @@ using System.Windows.Forms;
 
 namespace BattleStrategy.Views.Controls
 {
+    //форма для битвы
     public partial class FightControl : UserControl
     {
+
         readonly Fight Fight;
+        //Панели слева
         public List<Panel> FirstTeamPanels { get; set; }
+        //Панели справа
         public List<Panel> SecondTeamPanels { get; set; }
         public string FirstTeamName { set => this.FirstTeamNameBox.Text = value; }
         public string SecondTeamName { set => this.SecondTeamNameBox.Text = value; }
+        
         public string SelectedPerson { get; set; }
 
         public FightControl()
@@ -30,6 +35,7 @@ namespace BattleStrategy.Views.Controls
 
 
         }
+        //ДОбавляем панели в списки
         private void Initialize()
         {
 
@@ -51,6 +57,7 @@ namespace BattleStrategy.Views.Controls
 
 
         }
+        //Выводим форму вперед, устанавливаем команды в Fight, делаем подготовку для битвы и начинаем битву
         public void Show(Team FirstTeam, Team SecondTeam)
         {
             this.BringToFront();
@@ -61,9 +68,14 @@ namespace BattleStrategy.Views.Controls
          
         }
 
+
+        
         private void PrepareForFight()
         {
+            //Чистим поле для битвы
             this.Clear();
+
+            //Создаем карты бойцов. Добавляем их в списки.
             for (int i = 0; i < Fight.FirstTeam.Count; i++)
             {
                 FighterCard fighterCard = new FighterCard(Fight.FirstTeam.People[i], this.FirstTeamPanels[i], Fight.FirstTeam);
@@ -81,12 +93,14 @@ namespace BattleStrategy.Views.Controls
 
         }
 
+        //клик по персонажу
         private void EnemyFight_Click(object sender, EventArgs e)
         {
+            //Получчаем тэг выбранного персонажа
             PictureBox pictureBox = sender as PictureBox;
             SelectedPerson = pictureBox.Tag.ToString();
 
-
+            //Ищем тэг выбранного персонажа среди всех персонажей. Когда нашли, запоминаем персонажа в качестве принимающего удар бойца.
             foreach (FighterCard fighterCard in Fight.FighterCards)
             {
                 if (fighterCard.Tag == SelectedPerson)
@@ -100,6 +114,8 @@ namespace BattleStrategy.Views.Controls
                 }
             }
 
+
+            //Второй шаг битвы.
             Fight.SecondStep();
 
 
@@ -110,6 +126,8 @@ namespace BattleStrategy.Views.Controls
             MessageBox.Show(errorMessage);
         }
 
+
+        //Убираем все карты с формы
         public void Clear()
         {
             foreach (Panel panel in FirstTeamPanels)

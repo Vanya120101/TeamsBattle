@@ -8,6 +8,7 @@ namespace BattleStrategy.Views.Controls
 {
     public partial class ChoosingFightControl : UserControl
     {
+        //Свойство для установки ссылки для выпадающих списков
         public BindingList<Team> Teams
         {
             set
@@ -21,8 +22,12 @@ namespace BattleStrategy.Views.Controls
 
             }
         }
+
+        //первая команда
         public Team FirstTeam { get => this.FirstTeamBox.SelectedItem as Team; }
+        //Вторая команда
         public Team SecondTeam { get => this.SecondTeamBox.SelectedItem as Team; }
+
 
         public ChoosingFightControl()
         {
@@ -34,8 +39,11 @@ namespace BattleStrategy.Views.Controls
 
 
 
+
+        //Происходит при нажатии кнопки Битва
         private void FightButton_Click(object sender, EventArgs e)
         {
+            
             FightControl fightControl = MainForm.GetFightControl();
             fightControl.Show(FirstTeam, SecondTeam);
         }

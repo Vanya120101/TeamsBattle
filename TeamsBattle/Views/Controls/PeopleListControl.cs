@@ -61,7 +61,7 @@ namespace BattleStrategy.Views.Controls
 
 
 
-
+        //Метод, который вызывается при изменении выделения команд
         private void PeopleList_SelectionChanged(object sender, EventArgs e)
         {
             if (PeopleList.CurrentRow == null)
@@ -89,7 +89,7 @@ namespace BattleStrategy.Views.Controls
 
 
 
-
+        //Метод, когда происходит двойной щелчек по челвоеку
         private void PeopleList_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             Person currentPerson = (Person)PeopleList.CurrentRow.DataBoundItem;
